@@ -1,0 +1,30 @@
+﻿
+2025-12-28 16:45:36 | Method: POST
+2025-12-28 16:45:36 | INSIDE POST HANDLER
+2025-12-28 16:45:36 | POST DATA - Email: testuser@test.com | Password: password123 | Role: pelamar
+2025-12-28 16:45:36 | PASSED: Fields not empty
+2025-12-28 16:45:36 | PASSED: Password length OK
+2025-12-28 16:45:36 | PASSED: Role valid
+2025-12-28 16:45:36 | PASSED: Email not exists
+2025-12-28 16:45:36 | INSERT RESULT: 2
+2025-12-28 16:45:36 | SUCCESS: Redirecting to login
+2025-12-28 16:45:40 | Method: GET
+2025-12-28 16:45:49 | Method: POST
+2025-12-28 16:45:49 | INSIDE POST HANDLER
+2025-12-28 16:45:49 | POST DATA - Email: test@example.com | Password: password123 | Role: pelamar
+2025-12-28 16:45:49 | PASSED: Fields not empty
+2025-12-28 16:45:49 | PASSED: Password length OK
+2025-12-28 16:45:49 | PASSED: Role valid
+2025-12-28 16:45:49 | PASSED: Email not exists
+2025-12-28 16:45:49 | INSERT RESULT: 3
+2025-12-28 16:45:49 | SUCCESS: Redirecting to login
+2025-12-28 16:46:28 | Method: GET
+2025-12-28 16:46:33 | Method: POST
+2025-12-28 16:46:33 | INSIDE POST HANDLER
+2025-12-28 16:46:33 | POST DATA - Email: fauzan@gmail.com | Password: 123456 | Role: pelamar
+2025-12-28 16:46:33 | PASSED: Fields not empty
+2025-12-28 16:46:33 | PASSED: Password length OK
+2025-12-28 16:46:33 | PASSED: Role valid
+2025-12-28 16:46:33 | PASSED: Email not exists
+2025-12-28 16:46:33 | INSERT RESULT: 4
+2025-12-28 16:46:33 | SUCCESS: Redirecting to login
