@@ -2,7 +2,7 @@
 
 <footer class="bg-white border-top py-3 mt-5">
     <div class="container text-center text-muted">
-        © <?= date('Y') ?> Jobseeker – Kelompok 2
+        © <?= date('Y') ?> Loker Kita – Kelompok 2
     </div>
 </footer>
 

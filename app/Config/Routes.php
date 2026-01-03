@@ -73,6 +73,8 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
  */
 $routes->group('pelamar', ['filter' => 'auth:pelamar'], function ($routes) {
     $routes->post('apply/(:num)', 'Lamaran::apply/$1');
+    $routes->get('profile', 'Pelamar::profile');
+    $routes->post('profile/save', 'Pelamar::save');
 });
 
 /*
@@ -83,6 +85,10 @@ $routes->group('pelamar', ['filter' => 'auth:pelamar'], function ($routes) {
 $routes->group('perusahaan', ['filter' => 'auth:perusahaan'], function ($routes) {
     $routes->get('lamaran', 'Perusahaan::lamaranMasuk');
     $routes->get('review/(:num)', 'Perusahaan::review/$1');
+    $routes->post('lowongan/store', 'Lowongan::store');
+    $routes->get('profile', 'Perusahaan::profile');
+    $routes->post('profile/save', 'Perusahaan::save');
+    $routes->post('lowongan/close/(:num)', 'Perusahaan::closeLowongan/$1');
 });
 
 /*

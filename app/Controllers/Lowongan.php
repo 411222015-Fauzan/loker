@@ -37,4 +37,37 @@ class Lowongan extends BaseController
 
         return view('lowongan/detail', $data);
     }
+
+    public function store()
+    {
+        // only perusahaan can post
+        if (session('role') != 'perusahaan') {
+            return redirect()->to('/login')->with('error', 'Akses ditolak');
+        }
+
+        $post = $this->request->getPost();
+
+        // find perusahaan profile linked to current user
+        $perusahaan = (new \App\Models\PerusahaanModel())->where('user_id', session('id'))->first();
+        if (!$perusahaan) {
+            return redirect()->back()->with('error', 'Profil perusahaan tidak ditemukan. Lengkapi profil terlebih dahulu.');
+        }
+
+        $data = [
+            'perusahaan_id' => $perusahaan['id'],
+            'judul' => $post['judul'] ?? null,
+            'deskripsi' => $post['deskripsi'] ?? null,
+            'klasifikasi_id' => $post['klasifikasi_id'] ?? null,
+            'wilayah_id' => $post['wilayah_id'] ?? null,
+            'tipe_pekerjaan' => $post['tipe_pekerjaan'] ?? null,
+            'gaji_min' => $post['gaji_min'] ?? null,
+            'gaji_max' => $post['gaji_max'] ?? null,
+            'status_pekerjaan' => 'open'
+        ];
+
+        $model = new LowonganModel();
+        $model->insert($data);
+
+        return redirect()->to('/dashboard')->with('success', 'Lowongan berhasil diposting');
+    }
 }

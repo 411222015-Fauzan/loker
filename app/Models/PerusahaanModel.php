@@ -12,6 +12,7 @@ class PerusahaanModel extends Model
     protected $allowedFields = [
         'user_id',
         'nama_perusahaan',
+        'no_telp',
         'bidang',
         'deskripsi',
         'alamat',
