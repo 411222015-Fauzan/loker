@@ -75,6 +75,7 @@ $routes->group('pelamar', ['filter' => 'auth:pelamar'], function ($routes) {
     $routes->post('apply/(:num)', 'Lamaran::apply/$1');
     $routes->get('profile', 'Pelamar::profile');
     $routes->post('profile/save', 'Pelamar::save');
+    $routes->post('change-password', 'Pelamar::changePassword');
 });
 
 /*
@@ -89,6 +90,7 @@ $routes->group('perusahaan', ['filter' => 'auth:perusahaan'], function ($routes)
     $routes->get('profile', 'Perusahaan::profile');
     $routes->post('profile/save', 'Perusahaan::save');
     $routes->post('lowongan/close/(:num)', 'Perusahaan::closeLowongan/$1');
+    $routes->post('change-password', 'Perusahaan::changePassword');
 });
 
 /*

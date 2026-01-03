@@ -20,11 +20,19 @@ class Lowongan extends BaseController
 
     public function search()
     {
-        $data['lowongan'] = (new LowonganModel())->search(
-            $this->request->getGet('keyword'),
-            $this->request->getGet('klasifikasi'),
-            $this->request->getGet('wilayah')
-        );
+        $keyword = $this->request->getGet('keyword');
+        $klasifikasiId = $this->request->getGet('klasifikasi');
+        $wilayahId = $this->request->getGet('wilayah');
+
+        $data = [
+            'lowongan' => (new LowonganModel())->search($keyword, $klasifikasiId, $wilayahId),
+            'klasifikasi' => (new KlasifikasiModel())->findAll(),
+            'wilayah' => (new WilayahModel())->findAll(),
+            'keyword' => $keyword,
+            'selected_klasifikasi' => $klasifikasiId,
+            'selected_wilayah' => $wilayahId,
+        ];
+
         return view('lowongan/index', $data);
     }
 

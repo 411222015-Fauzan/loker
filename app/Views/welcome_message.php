@@ -2,30 +2,30 @@
 
 <!-- Search Section -->
 <div class="container mt-4 mb-5">
-    <form method="get" action="/lowongan/search" class="row g-2">
-        <div class="col-md-5">
-            <input type="text" name="keyword" class="form-control" placeholder="Cari Pekerjaan">
-        </div>
-        <div class="col-md-4">
-            <select name="wilayah" class="form-select">
-                <option value="">Semua Lokasi</option>
-                <?php if(!empty($wilayah)): foreach($wilayah as $w): ?>
-                    <option value="<?= $w['id'] ?>"><?= $w['nama_wilayah'] ?></option>
-                <?php endforeach; endif; ?>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select name="klasifikasi" class="form-select">
-                <option value="">Lulusan</option>
-                <?php if(!empty($klasifikasi)): foreach($klasifikasi as $k): ?>
-                    <option value="<?= $k['id'] ?>"><?= $k['nama_klasifikasi'] ?></option>
-                <?php endforeach; endif; ?>
-            </select>
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-primary w-100">Cari</button>
-        </div>
-    </form>
+                <form method="get" action="/lowongan/search" class="row g-2">
+                    <div class="col-md-5">
+                        <input type="text" name="keyword" class="form-control" placeholder="Cari Pekerjaan" value="<?= esc($keyword ?? '') ?>">
+                    </div>
+                    <div class="col-md-4">
+                        <select name="wilayah" class="form-select">
+                            <option value="">Semua Lokasi</option>
+                            <?php if(!empty($wilayah)): foreach($wilayah as $w): ?>
+                                <option value="<?= $w['id'] ?>" <?= (isset($selected_wilayah) && $selected_wilayah == $w['id']) ? 'selected' : '' ?>><?= $w['nama_wilayah'] ?></option>
+                            <?php endforeach; endif; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select name="klasifikasi" class="form-select">
+                            <option value="">Klasifikasi</option>
+                            <?php if(!empty($klasifikasi)): foreach($klasifikasi as $k): ?>
+                                <option value="<?= $k['id'] ?>" <?= (isset($selected_klasifikasi) && $selected_klasifikasi == $k['id']) ? 'selected' : '' ?>><?= $k['nama_klasifikasi'] ?></option>
+                            <?php endforeach; endif; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary w-100">Cari</button>
+                    </div>
+                </form>
 </div>
 
 <!-- Sign Up / Login CTA Box -->

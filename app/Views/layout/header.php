@@ -28,8 +28,10 @@
                     <?php if(session('role') == 'perusahaan'): ?>
                         <li class="nav-item"><a class="nav-link" href="/perusahaan/lamaran">Lamaran Masuk</a></li>
                         <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard Perusahaan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/perusahaan/profile">Profil Perusahaan</a></li>
                     <?php else: ?>
                         <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard Pelamar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/pelamar/profile">Profil Saya</a></li>
                     <?php endif; ?>
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 <?php else: ?>
@@ -41,4 +43,16 @@
     </div>
 </nav>
 
-<div class="container my-4">
+<div class="container my-4">    <?php if(session('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= esc(session('success')) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if(session('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= esc(session('error')) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>

@@ -30,16 +30,16 @@ class LowonganModel extends Model
     {
         $builder = $this->select('lowongan_pekerjaan.*, perusahaan_profiles.nama_perusahaan')
             ->join('perusahaan_profiles', 'perusahaan_profiles.id = lowongan_pekerjaan.perusahaan_id')
-            ->where('status_pekerjaan', 'open');
+            ->where('lowongan_pekerjaan.status_pekerjaan', 'open');
 
         if ($keyword) {
-            $builder->like('judul', $keyword);
+            $builder->like('lowongan_pekerjaan.judul', $keyword);
         }
         if ($klasifikasi) {
-            $builder->where('klasifikasi_id', $klasifikasi);
+            $builder->where('lowongan_pekerjaan.klasifikasi_id', $klasifikasi);
         }
         if ($wilayah) {
-            $builder->where('wilayah_id', $wilayah);
+            $builder->where('lowongan_pekerjaan.wilayah_id', $wilayah);
         }
 
         return $builder->findAll();

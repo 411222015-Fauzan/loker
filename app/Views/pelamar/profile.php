@@ -27,4 +27,25 @@
     <button class="btn btn-primary">Simpan Profil</button>
 </form>
 
+<hr class="my-5">
+
+<h5 class="mb-4">Ganti Password</h5>
+
+<form method="post" action="/pelamar/change-password">
+    <div class="mb-3">
+        <label class="form-label">Password Lama</label>
+        <input type="password" name="old_password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password Baru</label>
+        <input type="password" name="new_password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Konfirmasi Password Baru</label>
+        <input type="password" name="confirm_password" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Ganti Password</button>
+</form>
+
 <?= view('layout/footer') ?>

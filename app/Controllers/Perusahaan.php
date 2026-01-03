@@ -70,4 +70,45 @@ class Perusahaan extends BaseController
         $model->update($id, ['status_pekerjaan' => 'closed']);
         return redirect()->back()->with('success', 'Lowongan ditutup');
     }
+
+    public function changePassword()
+    {
+        $post = $this->request->getPost();
+        $old_password = $post['old_password'] ?? '';
+        $new_password = $post['new_password'] ?? '';
+        $confirm_password = $post['confirm_password'] ?? '';
+
+        // Validate inputs
+        if (!$old_password || !$new_password || !$confirm_password) {
+            return redirect()->back()->with('error', 'Semua field password harus diisi');
+        }
+
+        if ($new_password !== $confirm_password) {
+            return redirect()->back()->with('error', 'Password baru dan konfirmasi tidak cocok');
+        }
+
+        if (strlen($new_password) < 6) {
+            return redirect()->back()->with('error', 'Password baru minimal 6 karakter');
+        }
+
+        // Fetch user from database
+        $userModel = new \App\Models\UserModel();
+        $user = $userModel->find(session('id'));
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User tidak ditemukan');
+        }
+
+        // Verify old password
+        if (!password_verify($old_password, $user['password'])) {
+            return redirect()->back()->with('error', 'Password lama tidak sesuai');
+        }
+
+        // Update password
+        $userModel->update(session('id'), [
+            'password' => password_hash($new_password, PASSWORD_BCRYPT)
+        ]);
+
+        return redirect()->to('/perusahaan/profile')->with('success', 'Password berhasil diubah');
+    }
 }
