@@ -154,7 +154,7 @@ class Pelamar extends BaseController
             'pelamar_id' => session('id'),
             'lowongan_id' => $lowonganId,
             'cv_file' => $name,
-            'status' => 'pending' // Asumsi kolom status ada
+            'status_review' => 'pending'
         ]);
 
         return redirect()->back()->with('success', 'Lamaran berhasil dikirim!');

@@ -44,10 +44,10 @@
             
             <!-- Tags (Static for now) -->
             <div class="mt-3 d-flex gap-2 flex-wrap">
-                <a href="#" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">Tanpa Pengalaman</a>
-                <a href="#" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">1 - 2 Tahun</a>
-                <a href="#" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">3 - 4 Tahun</a>
-                <a href="#" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">5 Tahun Lebih</a>
+                <a href="/lowongan/search?pengalaman=Tanpa" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">Tanpa Pengalaman</a>
+                <a href="/lowongan/search?pengalaman=1" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">1 - 3 Tahun</a>
+                <a href="/lowongan/search?pengalaman=3" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">3 - 5 Tahun</a>
+                <a href="/lowongan/search?pengalaman=5" class="badge bg-light text-dark text-decoration-none border fw-normal px-3 py-2">5 Tahun Lebih</a>
             </div>
         </div>
     </div>
@@ -116,8 +116,14 @@
                 <a href="#" class="text-decoration-none">Lihat Semua >></a>
             </div>
 
-            <?php if(!empty($latest)): ?>
-                <?php foreach($latest as $job): ?>
+            <?php 
+                $display_jobs = [];
+                if (isset($lowongan)) $display_jobs = $lowongan;
+                elseif (isset($latest)) $display_jobs = $latest;
+            ?>
+            
+            <?php if(!empty($display_jobs)): ?>
+                <?php foreach($display_jobs as $job): ?>
                     <div class="card mb-3 border-0 shadow-sm job-card">
                         <div class="card-body p-3">
                             <div class="row align-items-center g-3">
@@ -136,7 +142,7 @@
                                         <a href="/lowongan/detail/<?= $job['id'] ?>" class="text-dark text-decoration-none stretched-link">
                                             <?= $job['judul'] ?>
                                         </a>
-                                        <?php if(strtotime($job['created_at']) > strtotime('-1 day')): ?>
+                                        <?php if(isset($job['created_at']) && strtotime($job['created_at']) > strtotime('-1 day')): ?>
                                             <span class="badge bg-danger ms-2" style="font-size: 0.6em">BARU</span>
                                         <?php endif; ?>
                                     </h5>
@@ -153,7 +159,7 @@
                                 </div>
                                 <div class="col-md-3 text-md-end text-center">
                                     <span class="text-muted small fst-italic">
-                                        <i class="bi bi-clock me-1"></i> <?= date('d M', strtotime($job['created_at'])) ?>
+                                        <i class="bi bi-clock me-1"></i> <?= isset($job['created_at']) ? date('d M', strtotime($job['created_at'])) : '-' ?>
                                     </span>
                                 </div>
                             </div>
@@ -173,11 +179,13 @@
         <div class="col-md-3">
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
-                    <h6 class="fw-bold mb-3">Menu Cepat</h6>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary"><i class="bi bi-clock-history me-2"></i> Riwayat Lamaran</button>
-                        <button class="btn btn-outline-warning"><i class="bi bi-bookmark me-2"></i> Lowongan Disimpan</button>
-                    </div>
+                    <?php if(!session('isLoggedIn') || session('role') == 'pelamar'): ?>
+                        <h6 class="fw-bold mb-3">Menu Cepat</h6>
+                        <div class="d-grid gap-2">
+                            <a href="/pelamar/lamaran" class="btn btn-outline-primary text-start"><i class="bi bi-clock-history me-2"></i> Riwayat Lamaran</a>
+                            <a href="/pelamar/saved" class="btn btn-outline-warning text-start"><i class="bi bi-bookmark me-2"></i> Lowongan Disimpan</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -185,11 +193,12 @@
                 <div class="card-body">
                     <h6 class="fw-bold mb-3">Profesi Populer</h6>
                     <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Administrasi</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Sales & Marketing</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Teknologi Informasi</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Akuntansi</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Desain Kreatif</a></li>
+                        <!-- Mapping IDs: 2=Admin, 3=Media/Marketing, 17=IT, 1=Akuntansi, 9=Desain -->
+                        <li class="mb-2"><a href="/lowongan/search?klasifikasi=2" class="text-decoration-none text-muted">Administrasi</a></li>
+                        <li class="mb-2"><a href="/lowongan/search?klasifikasi=3" class="text-decoration-none text-muted">Sales & Marketing</a></li>
+                        <li class="mb-2"><a href="/lowongan/search?klasifikasi=17" class="text-decoration-none text-muted">Teknologi Informasi</a></li>
+                        <li class="mb-2"><a href="/lowongan/search?klasifikasi=1" class="text-decoration-none text-muted">Akuntansi</a></li>
+                        <li><a href="/lowongan/search?klasifikasi=9" class="text-decoration-none text-muted">Desain Kreatif</a></li>
                     </ul>
                 </div>
             </div>

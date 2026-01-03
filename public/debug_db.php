@@ -6,7 +6,19 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-echo "=== Wilayah (Jakarta Selatan) ===\n";
+echo "\n=== ALL Company Profiles ===\n";
+$res = $mysqli->query("SELECT id, nama_perusahaan, user_id FROM perusahaan_profiles");
+while($row = $res->fetch_assoc()) {
+    print_r($row);
+}
+
+echo "\n=== Lamaran Pekerjaan Schema ===\n";
+$res = $mysqli->query("DESCRIBE lamaran_pekerjaan");
+while($row = $res->fetch_assoc()) {
+    print_r($row);
+}
+
+echo "\n=== Wilayah (Jakarta Selatan) ===\n";
 $res = $mysqli->query("SELECT * FROM wilayah WHERE nama_wilayah LIKE '%Jakarta Selatan%'");
 while($row = $res->fetch_assoc()) {
     print_r($row);

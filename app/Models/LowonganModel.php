@@ -29,7 +29,7 @@ class LowonganModel extends Model
 
     // Pencarian lowongan
     // Pencarian lowongan
-    public function search($keyword = null, $klasifikasi = null, $wilayah = null)
+    public function search($keyword = null, $klasifikasi = null, $wilayah = null, $pengalaman = null)
     {
         $builder = $this->select('lowongan_pekerjaan.*, perusahaan_profiles.nama_perusahaan, perusahaan_profiles.logo, wilayah.nama_wilayah, klasifikasi_pekerjaan.nama_klasifikasi')
             ->join('perusahaan_profiles', 'perusahaan_profiles.id = lowongan_pekerjaan.perusahaan_id')
@@ -46,10 +46,10 @@ class LowonganModel extends Model
         if ($klasifikasi && $klasifikasi != '#') {
             $k = (new KlasifikasiModel())->find($klasifikasi);
             if ($k) {
-                $builder->where('klasifikasi_pekerjaan.nama_klasifikasi', $k['nama_klasifikasi']);
+                // Duplicate cleanup done, safer to use ID
+                $builder->where('lowongan_pekerjaan.klasifikasi_id', $k['id']);
             } else {
-                // If finding by ID failed (maybe it's a name passed directly? or just bad ID)
-                // Try searching by name just in case
+                // Fallback for name search
                 $builder->groupStart()
                     ->where('lowongan_pekerjaan.klasifikasi_id', $klasifikasi)
                     ->orLike('klasifikasi_pekerjaan.nama_klasifikasi', $klasifikasi)
@@ -59,13 +59,19 @@ class LowonganModel extends Model
         if ($wilayah && $wilayah != '#') {
             $w = (new WilayahModel())->find($wilayah);
             if ($w) {
-                $builder->where('wilayah.nama_wilayah', $w['nama_wilayah']);
+                // Duplicate cleanup done, safer to use ID
+                $builder->where('lowongan_pekerjaan.wilayah_id', $w['id']);
             } else {
-                 $builder->groupStart()
+                // Fallback for name search
+                $builder->groupStart()
                     ->where('lowongan_pekerjaan.wilayah_id', $wilayah)
                     ->orLike('wilayah.nama_wilayah', $wilayah)
                     ->groupEnd();
             }
+        }
+        
+        if ($pengalaman) {
+             $builder->like('lowongan_pekerjaan.pengalaman', $pengalaman);
         }
 
         return $builder->orderBy('lowongan_pekerjaan.created_at', 'DESC')->findAll();

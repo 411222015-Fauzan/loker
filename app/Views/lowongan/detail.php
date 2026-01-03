@@ -135,10 +135,14 @@
                             </button>
                         <?php elseif(!session('isLoggedIn')): ?>
                             <a href="/login" class="btn btn-dark px-4 py-2 fw-bold"><i class="bi bi-lock me-1"></i> Login untuk Melamar</a>
+                            <a href="/login" class="btn btn-outline-secondary px-4 py-2 fw-bold"><i class="bi bi-bookmark me-1"></i> Simpan</a>
                         <?php endif; ?>
                         
-                        <button class="btn btn-outline-secondary px-4 py-2 fw-bold"><i class="bi bi-bookmark me-1"></i> Simpan</button>
-                        <button class="btn btn-outline-secondary px-4 py-2 fw-bold"><i class="bi bi-share me-1"></i> Bagikan</button>
+                        <?php if(session('isLoggedIn') && session('role') == 'pelamar'): ?>
+                            <form action="/pelamar/saved/add/<?= $lowongan['id'] ?>" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-secondary px-4 py-2 fw-bold"><i class="bi bi-bookmark me-1"></i> Simpan</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

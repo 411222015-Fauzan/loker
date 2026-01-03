@@ -44,9 +44,10 @@ class Lowongan extends BaseController
         $keyword = $this->request->getGet('keyword');
         $klasifikasiId = $this->request->getGet('klasifikasi');
         $wilayahId = $this->request->getGet('wilayah');
+        $pengalaman = $this->request->getGet('pengalaman');
 
         $data = [
-            'lowongan' => (new LowonganModel())->search($keyword, $klasifikasiId, $wilayahId),
+            'lowongan' => (new LowonganModel())->search($keyword, $klasifikasiId, $wilayahId, $pengalaman),
             'klasifikasi' => (new KlasifikasiModel())->findAll(),
             'wilayah' => (new WilayahModel())->findAll(),
             'keyword' => $keyword,

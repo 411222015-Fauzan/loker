@@ -26,7 +26,7 @@
                                 <small class="text-muted">Melamar pada: <?= date('d M Y, H:i', strtotime($l['created_at'])) ?></small>
                             </div>
                             <div class="text-end">
-                                <span class="badge bg-secondary"><?= ucfirst($l['status']) ?></span>
+                                <span class="badge bg-secondary"><?= ucfirst($l['status_review']) ?></span>
                             </div>
                         </div>
                     </li>
