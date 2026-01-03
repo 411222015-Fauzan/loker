@@ -76,6 +76,13 @@ $routes->group('pelamar', ['filter' => 'auth:pelamar'], function ($routes) {
     $routes->get('profile', 'Pelamar::profile');
     $routes->post('profile/save', 'Pelamar::save');
     $routes->post('change-password', 'Pelamar::changePassword');
+    
+    // History & Saved Jobs
+    $routes->get('lamaran', 'Pelamar::lamaran');
+    $routes->get('saved', 'Pelamar::saved');
+    $routes->post('saved/add/(:num)', 'Pelamar::saveJob/$1');
+    $routes->post('delete_saved/(:num)', 'Pelamar::deleteSavedJob/$1');
+    $routes->post('apply/(:num)', 'Pelamar::apply/$1'); // Ensure this matches View form action
 });
 
 /*
@@ -87,6 +94,8 @@ $routes->group('perusahaan', ['filter' => 'auth:perusahaan'], function ($routes)
     $routes->get('lamaran', 'Perusahaan::lamaranMasuk');
     $routes->get('review/(:num)', 'Perusahaan::review/$1');
     $routes->post('lowongan/store', 'Lowongan::store');
+    $routes->get('lowongan/edit/(:num)', 'Lowongan::edit/$1');
+    $routes->post('lowongan/update/(:num)', 'Lowongan::update/$1');
     $routes->get('profile', 'Perusahaan::profile');
     $routes->post('profile/save', 'Perusahaan::save');
     $routes->post('lowongan/close/(:num)', 'Perusahaan::closeLowongan/$1');

@@ -1,6 +1,6 @@
 </div>
 
-<footer class="bg-white border-top py-3 mt-5">
+<footer class="bg-white border-top py-3 mt-auto">
     <div class="container text-center text-muted">
         © <?= date('Y') ?> Loker Kita – Kelompok 2
     </div>

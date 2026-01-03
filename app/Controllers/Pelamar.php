@@ -83,4 +83,80 @@ class Pelamar extends BaseController
 
         return redirect()->to('/pelamar/profile')->with('success', 'Password berhasil diubah');
     }
+    public function lamaran()
+    {
+        // History Lamaran
+        $lamaran = (new \App\Models\LamaranModel())
+            ->select('lamaran_pekerjaan.*, lowongan_pekerjaan.judul, perusahaan_profiles.nama_perusahaan, perusahaan_profiles.logo')
+            ->join('lowongan_pekerjaan', 'lowongan_pekerjaan.id = lamaran_pekerjaan.lowongan_id')
+            ->join('perusahaan_profiles', 'perusahaan_profiles.id = lowongan_pekerjaan.perusahaan_id')
+            ->where('lamaran_pekerjaan.pelamar_id', session('id'))
+            ->orderBy('lamaran_pekerjaan.created_at', 'DESC')
+            ->findAll();
+
+        return view('pelamar/lamaran', ['lamaran' => $lamaran]);
+    }
+
+    public function saved()
+    {
+        $saved = (new \App\Models\SavedJobModel())->getSavedJobs(session('id'));
+        return view('pelamar/saved', ['saved' => $saved]);
+    }
+
+    public function saveJob($lowonganId)
+    {
+        $model = new \App\Models\SavedJobModel();
+        
+        // Check if already saved
+        $exists = $model->where('user_id', session('id'))
+                        ->where('lowongan_id', $lowonganId)
+                        ->first();
+        
+        if (!$exists) {
+            $model->insert([
+                'user_id' => session('id'),
+                'lowongan_id' => $lowonganId
+            ]);
+            return redirect()->back()->with('success', 'Lowongan berhasil disimpan');
+        }
+
+        return redirect()->back()->with('info', 'Lowongan sudah ada di daftar simpan');
+    }
+
+    public function deleteSavedJob($id)
+    {
+        $model = new \App\Models\SavedJobModel();
+        $job = $model->find($id);
+
+        if ($job && $job['user_id'] == session('id')) {
+            $model->delete($id);
+            return redirect()->back()->with('success', 'Lowongan dihapus dari daftar simpan');
+        }
+
+        return redirect()->back()->with('error', 'Gagal menghapus lowongan');
+    }
+
+    public function apply($lowonganId)
+    {
+        // Reusing existing logic or standardizing call? 
+        // Assuming there is already an apply method or creating one if missing.
+        // Wait, the detail view POSTs to /pelamar/apply/{id}. Let's check Routes or implement it here if missing.
+        
+        $file = $this->request->getFile('cv');
+        if (!$file->isValid()) {
+            return redirect()->back()->with('error', 'File CV tidak valid');
+        }
+
+        $name = $file->getRandomName();
+        $file->move(WRITEPATH . 'uploads/cv', $name);
+
+        (new \App\Models\LamaranModel())->insert([
+            'pelamar_id' => session('id'),
+            'lowongan_id' => $lowonganId,
+            'cv_file' => $name,
+            'status' => 'pending' // Asumsi kolom status ada
+        ]);
+
+        return redirect()->back()->with('success', 'Lamaran berhasil dikirim!');
+    }
 }

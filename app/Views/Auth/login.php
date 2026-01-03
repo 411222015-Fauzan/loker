@@ -1,6 +1,6 @@
 <?= view('layout/header') ?>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center my-auto w-100">
     <div class="col-md-4">
         <div class="card shadow-sm">
             <div class="card-body">

@@ -22,35 +22,67 @@
         <textarea name="deskripsi" class="form-control" rows="5" required></textarea>
     </div>
     <div class="row">
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
             <label class="form-label">Klasifikasi</label>
-            <select name="klasifikasi_id" class="form-select">
+            <select name="klasifikasi_id" class="form-select" required>
                 <option value="">Pilih Klasifikasi</option>
                 <?php if(!empty($klasifikasi)): foreach($klasifikasi as $k): ?>
                     <option value="<?= $k['id'] ?>"><?= $k['nama_klasifikasi'] ?></option>
                 <?php endforeach; endif; ?>
             </select>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-6 mb-3">
             <label class="form-label">Lokasi (Wilayah)</label>
-            <select name="wilayah_id" class="form-select">
+            <select name="wilayah_id" class="form-select" required>
                 <option value="">Pilih Wilayah</option>
                 <?php if(!empty($wilayah)): foreach($wilayah as $w): ?>
                     <option value="<?= $w['id'] ?>"><?= $w['nama_wilayah'] ?></option>
                 <?php endforeach; endif; ?>
             </select>
         </div>
-        <div class="col-md-2 mb-3">
-            <label class="form-label">Tipe</label>
-            <select name="tipe_pekerjaan" class="form-select">
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Pendidikan</label>
+            <select name="pendidikan" class="form-select" required>
+                <option value="">Pilih Pendidikan</option>
+                <option value="SMA/SMK">SMA/SMK</option>
+                <option value="D3">D3</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="Lainnya">Lainnya</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Pengalaman</label>
+            <select name="pengalaman" class="form-select" required>
+                <option value="">Pilih Pengalaman</option>
+                <option value="Tanpa Pengalaman">Tanpa Pengalaman</option>
+                <option value="1-2 Tahun">1-2 Tahun</option>
+                <option value="3-4 Tahun">3-4 Tahun</option>
+                <option value="5 Tahun Lebih">5 Tahun Lebih</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label class="form-label">Tipe Pekerjaan</label>
+            <select name="tipe_pekerjaan" class="form-select" required>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
                 <option value="Contract">Contract</option>
+                <option value="Freelance">Freelance</option>
             </select>
         </div>
-        <div class="col-md-2 mb-3">
-            <label class="form-label">Gaji Min</label>
-            <input type="number" name="gaji_min" class="form-control">
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Gaji Minimum (Rp)</label>
+            <input type="number" name="gaji_min" class="form-control" placeholder="Contoh: 4000000">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Gaji Maksimum (Rp)</label>
+            <input type="number" name="gaji_max" class="form-control" placeholder="Contoh: 7000000">
         </div>
     </div>
 
@@ -73,6 +105,7 @@
                 </div>
                 <div class="btn-group">
                     <a href="/lowongan/detail/<?= $L['id'] ?>" class="btn btn-sm btn-outline-primary">Lihat</a>
+                    <a href="/perusahaan/lowongan/edit/<?= $L['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
                     <?php if($L['status_pekerjaan'] == 'open'): ?>
                         <form method="post" action="/perusahaan/lowongan/close/<?= $L['id'] ?>" style="display:inline;">
                             <button class="btn btn-sm btn-outline-danger" type="submit">Tutup</button>

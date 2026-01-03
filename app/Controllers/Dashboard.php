@@ -34,11 +34,33 @@ class Dashboard extends BaseController
             return redirect()->to('/pelamar/profile');
         }
 
-        $lowongan = (new \App\Models\LowonganModel())->where('status_pekerjaan', 'open')->findAll();
+        // Fetch data similar to Home Page
+        $lowonganModel = new \App\Models\LowonganModel();
+        
+        $rekomendasi = $lowonganModel
+            ->select('lowongan_pekerjaan.*, perusahaan_profiles.nama_perusahaan, perusahaan_profiles.logo, wilayah.nama_wilayah')
+            ->join('perusahaan_profiles', 'perusahaan_profiles.id = lowongan_pekerjaan.perusahaan_id')
+            ->join('wilayah', 'wilayah.id = lowongan_pekerjaan.wilayah_id')
+            ->where('lowongan_pekerjaan.status_pekerjaan', 'open')
+            ->orderBy('lowongan_pekerjaan.created_at', 'DESC')
+            ->limit(5)
+            ->find();
+
+        $latest = $lowonganModel
+            ->select('lowongan_pekerjaan.*, perusahaan_profiles.nama_perusahaan, perusahaan_profiles.logo, wilayah.nama_wilayah')
+            ->join('perusahaan_profiles', 'perusahaan_profiles.id = lowongan_pekerjaan.perusahaan_id')
+            ->join('wilayah', 'wilayah.id = lowongan_pekerjaan.wilayah_id')
+            ->where('lowongan_pekerjaan.status_pekerjaan', 'open')
+            ->orderBy('lowongan_pekerjaan.created_at', 'DESC')
+            ->limit(10)
+            ->find();
+
         return view('dashboard/pelamar', [
             'klasifikasi' => $klasifikasi,
             'wilayah' => $wilayah,
-            'lowongan' => $lowongan
+            'rekomendasi' => $rekomendasi,
+            'latest' => $latest,
+            'pelamar' => $pelamar
         ]);
     }
 }
