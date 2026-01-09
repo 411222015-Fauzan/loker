@@ -29,7 +29,7 @@
                          class="rounded-circle mb-3" 
                          style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Muhammad Krisna Bayu</h5>
-                    <p class="text-muted mb-0">NIM: 411222015</p>
+                    <p class="text-muted mb-0">NIM: 411212105</p>
                 </div>
             </div>
         </div>
@@ -56,8 +56,8 @@
                          alt="Dina" 
                          class="rounded-circle mb-3" 
                          style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
-                    <h5 class="card-title fw-bold mb-1">Dina</h5>
-                    <p class="text-muted mb-0">NIM: 411222015</p>
+                    <h5 class="card-title fw-bold mb-1">Dina Nur Auliana</h5>
+                    <p class="text-muted mb-0">NIM: 411253007</p>
                 </div>
             </div>
         </div>
@@ -70,8 +70,8 @@
                          alt="Teressia" 
                          class="rounded-circle mb-3" 
                          style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
-                    <h5 class="card-title fw-bold mb-1">Teressia</h5>
-                    <p class="text-muted mb-0">NIM: 411222015</p>
+                    <h5 class="card-title fw-bold mb-1">Teresia Irma Cahyani</h5>
+                    <p class="text-muted mb-0">NIM: 411231051</p>
                 </div>
             </div>
         </div>
