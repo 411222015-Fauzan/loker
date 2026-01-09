@@ -23,6 +23,19 @@ class Perusahaan extends BaseController
         return redirect()->back()->with('success','Lamaran ditandai reviewed');
     }
 
+    public function deleteLamaran($id)
+    {
+        $model = new LamaranModel();
+        $lamaran = $model->find($id);
+        
+        if ($lamaran) {
+            $model->delete($id);
+            return redirect()->back()->with('success', 'Lamaran berhasil dihapus');
+        }
+
+        return redirect()->back()->with('error', 'Lamaran tidak ditemukan');
+    }
+
     // Show company profile form
     public function profile()
     {

@@ -148,7 +148,7 @@ class Pelamar extends BaseController
         }
 
         $name = $file->getRandomName();
-        $file->move(WRITEPATH . 'uploads/cv', $name);
+        $file->move(FCPATH . 'uploads/cv', $name);
 
         (new \App\Models\LamaranModel())->insert([
             'pelamar_id' => session('id'),

@@ -216,7 +216,7 @@
                 <h5 class="modal-title fw-bold">Lamar Pekerjaan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form method="post" action="/pelamar/apply/<?= $lowongan['id'] ?>" enctype="multipart/form-data">
+            <form method="post" action="<?= base_url('pelamar/apply/' . $lowongan['id']) ?>" enctype="multipart/form-data">
                 <div class="modal-body">
                     <p>Anda akan melamar posisi <strong><?= $lowongan['judul'] ?></strong> di <strong><?= $lowongan['nama_perusahaan'] ?></strong>.</p>
                     <div class="mb-3">
