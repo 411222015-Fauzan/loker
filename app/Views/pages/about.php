@@ -11,10 +11,9 @@
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm text-center py-4">
                 <div class="card-body">
-                    <img src="https://ui-avatars.com/api/?name=Muhammad+Fauzan+Arbah&background=random&size=128" 
-                         alt="Muhammad Fauzan Arbah" 
+                    <img src="/images/fauzan.png" 
                          class="rounded-circle mb-3" 
-                         style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #0d6efd;">
+                         style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Muhammad Fauzan Arbah</h5>
                     <p class="text-muted mb-0">NIM: 411222015</p>
                 </div>
@@ -25,10 +24,10 @@
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm text-center py-4">
                 <div class="card-body">
-                    <img src="https://ui-avatars.com/api/?name=Muhammad+Krisna+Bayu&background=random&size=128" 
+                    <img src="/images/bayu.png" 
                          alt="Muhammad Krisna Bayu" 
                          class="rounded-circle mb-3" 
-                         style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #0d6efd;">
+                         style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Muhammad Krisna Bayu</h5>
                     <p class="text-muted mb-0">NIM: 411222015</p>
                 </div>
@@ -39,10 +38,10 @@
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm text-center py-4">
                 <div class="card-body">
-                    <img src="https://ui-avatars.com/api/?name=Josep+Dito&background=random&size=128" 
+                    <img src="/images/dito.png" 
                          alt="Josep Dito" 
                          class="rounded-circle mb-3" 
-                         style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #0d6efd;">
+                         style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Josep Dito</h5>
                     <p class="text-muted mb-0">NIM: 411222015</p>
                 </div>
@@ -53,10 +52,10 @@
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm text-center py-4">
                 <div class="card-body">
-                    <img src="https://ui-avatars.com/api/?name=Dina&background=random&size=128" 
+                    <img src="/images/dina.png" 
                          alt="Dina" 
                          class="rounded-circle mb-3" 
-                         style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #0d6efd;">
+                         style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Dina</h5>
                     <p class="text-muted mb-0">NIM: 411222015</p>
                 </div>
@@ -67,10 +66,10 @@
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 border-0 shadow-sm text-center py-4">
                 <div class="card-body">
-                    <img src="https://ui-avatars.com/api/?name=Teressia&background=random&size=128" 
+                    <img src="/images/teressia.png" 
                          alt="Teressia" 
                          class="rounded-circle mb-3" 
-                         style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #0d6efd;">
+                         style="width: 150px !important; height: 150px !important; object-fit: cover; border: 3px solid #0d6efd;">
                     <h5 class="card-title fw-bold mb-1">Teressia</h5>
                     <p class="text-muted mb-0">NIM: 411222015</p>
                 </div>
